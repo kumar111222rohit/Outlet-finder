@@ -39,7 +39,6 @@ if(index!=-1){
         let isInside = inside(latLng, polygon[i].geometry.coordinates[index].map(item => [item[index], item[index+1]]))
         if (isInside) {
             resolve(`Your delivery outlet is :-${polygon[i].properties.name}`);
-
             return;
         }
     }

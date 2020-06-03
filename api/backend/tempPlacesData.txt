@@ -1,0 +1,7 @@
+[ 'Landstraßer Hauptstraße 163 (Pizzeria Stefano)',
+  'Dreyhausenstraße 17 (Il Primo)',
+  'Randhartingergasse 9 (Pizzeria Tomato)',
+  'Kreuzgasse 54 (Luciano)',
+  'Schönbrunner Str. 156 (Bella Italia)',
+  'Maurer Hauptpl. 2 (Il Gabbiano)',
+  'Wallensteinstraße 5 (Own)' ]
