@@ -21,20 +21,34 @@ class DeliveryService {
             var inside = require('point-in-polygon')
             const points=converted.features.filter(item=>item.geometry.type==='Point')
             const polygon=converted.features.filter(item=>item.geometry.type==='Polygon')
-            console.log(polygon)
             // console.log(polygon)
+            console.log(locationName)
 
-            for(let j=0;j<points.length;j++) {
-                let latLng=points[j].geometry.coordinates
-                for (let i = 0; i < polygon.length; i++) {
-                    let isInside = inside(latLng, polygon[i].geometry.coordinates[0].map(item => [item[0], item[1]]))
-                    if (isInside) {
-                        resolve(`Found ${latLng} ${polygon[i].properties.name}`);
-                        continue;
-                    }
-                }
-                reject(`Not Found ${latLng}`);
-            }
+            let placesArr=[]
+            points.map((item)=>{
+                placesArr.push(item.properties.name)
+            })
+            console.log(placesArr)
+
+            // var found = placesArr.includes(locationName);
+            let index= placesArr.indexOf(locationName)
+
+if(index!=-1){
+    let latLng=points[index].geometry.coordinates
+    for (let i = 0; i < polygon.length; i++) {
+        let isInside = inside(latLng, polygon[i].geometry.coordinates[index].map(item => [item[index], item[index+1]]))
+        if (isInside) {
+            resolve(`Your delivery outlet is :-${polygon[i].properties.name}`);
+
+            return;
+        }
+    }
+}
+else {
+    reject(`Sorry! currently we dont have any delivery outlet near you.`);
+
+}
+
 
         })
 

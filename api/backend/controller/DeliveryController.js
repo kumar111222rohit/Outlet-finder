@@ -4,12 +4,12 @@ class DeliveryController {
     getDeliveyOutlet (req, res,next) {
 
 
-            deliveryService.getDeliveryOutlet("Stuly")
+            deliveryService.getDeliveryOutlet(req.query.place)
             .then(result => {
-                res.send(result);
+                res.send(JSON.stringify(result));
             })
             .catch(error => {
-                next(error)
+                res.send(JSON.stringify(error))
             })
     }
 }

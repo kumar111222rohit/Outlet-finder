@@ -5,28 +5,23 @@ class SearchComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            nearestOutlet:''
+            nearestOutlet:'',
+            place:''
         }
-
     }
-
-    // getDeliveryOutlet=()={
-    //     fetch("")
-    // .then()
-    //     .then()
-    // }
-
     handleClick=()=> {
-        // this.setState({
-        //     nearestOutlet:e.target.value
-        // })
-
+        fetch("http://localhost:9898/delivery/outlet?place="+this.state.place,)
+            .then((result) => result.json())
+            .then(res => {
+                console.log(res)
+                    this.setState({nearestOutlet: res})
+                }
+            );
     }
     handleChange=(e)=> {
         this.setState({
-            nearestOutlet:e.target.value
+            place:e.target.value
         })
-
     }
     render() {
 
@@ -36,7 +31,7 @@ class SearchComponent extends React.Component {
             <input onChange={ this.handleChange }/>
                 <button style={{marginLeft: '10px'}} onClick={this.handleClick}>Find</button>
                 </div>
-                <div className="result-container">{this.state.nearestOutlet}this is my delivery data</div>
+                <div className="result-container">{this.state.nearestOutlet}</div>
 
             </div>
         )
